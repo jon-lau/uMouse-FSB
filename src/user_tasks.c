@@ -60,8 +60,6 @@ void StartMenuTask(void const * argument)
     {
         //Process UART buffer if a full string was received
         if (xSemaphoreTake(xUARTTransferSemaphore, 0x0) == pdTRUE) {
-            //Toggle LED3 when receiving a message
-            HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_2);
             //Reset UART buffers
             memset(tx_buff, 0, sizeof(tx_buff));
             memset(token, 0, sizeof(token));

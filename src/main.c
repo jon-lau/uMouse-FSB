@@ -133,6 +133,10 @@ int main(void)
   MX_TIM5_Init();
   MX_USART1_UART_Init();
 
+  //Cont ADC READINGS
+
+  //Cont ADC READINGS END
+
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

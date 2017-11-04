@@ -18,11 +18,36 @@ void Help_Callback(int num_keys, float *keys)
 }
 
 void ADC_Callback(int num_keys, float *keys) {
-	for(int i = 0; i < 4; i++){
-		if(HAL_ADC_PollForConversion(&hadc1, 1000000) == HAL_OK) {
-			printf("Data[%d]: %ld\n\r", i, HAL_ADC_GetValue(&hadc1));
+	int sum = 0;
+	for(int k = 0; k < 20; k++ ){
+		for(int j = 0; j < 4; j++ ){
+				switch(j){
+					case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
+					case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_SET);
+					case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+					case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+				}
+			for(int i = 0; i < 10; i++){
+				if(HAL_ADC_PollForConversion(&hadc1, 1000000) == HAL_OK) {
+					sum += HAL_ADC_GetValue(&hadc1);
+					//printf("Data[]: %ld\n\r", HAL_ADC_GetValue(&hadc1));
+				}
+			}
+			sum = sum/10;
+			printf("Data[%d]: %d\n\r", j , sum);
+
+			switch(j){
+				case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);
+				case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET);
+				case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+				case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+			}
+
 		}
+
+		printf("\n");
 	}
+
 }
 
 void Switch_Callback(int num_keys, float *keys) {
