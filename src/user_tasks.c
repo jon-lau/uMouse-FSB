@@ -15,12 +15,14 @@ void StartADCTask(void const * argument) {
 }
 
 void StartMotorTask(void const * argument) {
+	//init left motor pwn pins to 0
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
 
-	printf("Enable Motors\n\r");
+	//init right motor pins to 0
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
 
-
-	HAL_GPIO_WritePin(L_PH_GPIO_Port, L_PH_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, R_PH_Pin, GPIO_PIN_SET);
 
 	for(;;){
 

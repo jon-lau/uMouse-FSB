@@ -139,6 +139,15 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
+//  while(1){
+//
+//	    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5)) {	                // checks if SW3 is set
+//	      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);      // switch on debug LED
+//	    } else {
+//	      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);    // switch off debug LED
+//	    }
+//  }
+
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -159,8 +168,8 @@ int main(void)
   //osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 512);
   //defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-  //osThreadDef(motorTask, StartMotorTask, osPriorityNormal, 0, 512);
-  //motorTaskHandle = osThreadCreate(osThread(motorTask), NULL);
+  osThreadDef(motorTask, StartMotorTask, osPriorityNormal, 0, 512);
+  motorTaskHandle = osThreadCreate(osThread(motorTask), NULL);
 
   osThreadDef(adcTask, StartADCTask, osPriorityNormal, 0, 128);
   adcTaskHandle = osThreadCreate(osThread(adcTask), NULL);
@@ -484,7 +493,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(L_PH_GPIO_Port, L_PH_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(R_TX_GPIO_Port, R_TX_Pin, GPIO_PIN_RESET);
+ HAL_GPIO_WritePin(R_TX_GPIO_Port, R_TX_Pin, GPIO_PIN_RESET);
+
+
+  HAL_GPIO_WritePin(L_TX_GPIO_Port, L_TX_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : CE_Pin L_EN_Pin R_PH_Pin IMU_CS_Pin 
                            L_TX_Pin LF_TX_Pin RF_TX_Pin */
@@ -533,7 +545,16 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(R_TX_GPIO_Port, &GPIO_InitStruct);
+	HAL_GPIO_Init(R_TX_GPIO_Port, &GPIO_InitStruct);
+
+
+
+  /*Configure GPIO pin : L_TX_Pin */
+  GPIO_InitStruct.Pin = L_TX_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  	HAL_GPIO_Init(L_TX_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SW2_Pin SW1_Pin */
   GPIO_InitStruct.Pin = SW2_Pin|SW1_Pin;

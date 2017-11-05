@@ -19,34 +19,48 @@ void Help_Callback(int num_keys, float *keys)
 
 void ADC_Callback(int num_keys, float *keys) {
 	int sum = 0;
-	for(int k = 0; k < 20; k++ ){
-		for(int j = 0; j < 4; j++ ){
-				switch(j){
-					case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
-					case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_SET);
-					case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
-					case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
-				}
-			for(int i = 0; i < 10; i++){
-				if(HAL_ADC_PollForConversion(&hadc1, 1000000) == HAL_OK) {
-					sum += HAL_ADC_GetValue(&hadc1);
-					//printf("Data[]: %ld\n\r", HAL_ADC_GetValue(&hadc1));
-				}
+//	for(;;){
+//		for(int j = 0; j < 4; j++ ){
+//				switch(j){
+//					case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
+//					case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_SET);
+//					case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+//					case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+//				}
+//			for(int i = 0; i < 10; i++){
+//				if(HAL_ADC_PollForConversion(&hadc1, 1000000) == HAL_OK) {
+//					sum += HAL_ADC_GetValue(&hadc1);
+//					//printf("Data[]: %ld\n\r", HAL_ADC_GetValue(&hadc1));
+//				}
+//			}
+//			sum = sum/10;
+//			printf("Data[%d]: %d\n\r", j , sum);
+//
+//			switch(j){
+//				case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);
+//				case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET);
+//				case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+//				case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+//			}
+//
+//		}
+//
+//		printf("\n");
+
+
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
+
+			while(1){
+				if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5))
+				HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
 			}
-			sum = sum/10;
-			printf("Data[%d]: %d\n\r", j , sum);
 
-			switch(j){
-				case 0:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);
-				case 1:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET);
-				case 2:  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
-				case 3:  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
-			}
 
-		}
+printf("THIS IS A TEST");
 
-		printf("\n");
-	}
+
+//	}
+
 
 }
 
@@ -68,14 +82,8 @@ void IMU_Callback(int num_keys, float *keys) {
 
 void Motor_Callback(int num_keys, float *keys) {
 
-	// Enable Motor Driver
-
-	HAL_GPIO_WritePin(L_PH_GPIO_Port, L_PH_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, R_PH_Pin, GPIO_PIN_SET);
-
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
-
+	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
 }
 
 void IMU_Accel_Callback(int num_keys, float *keys) {

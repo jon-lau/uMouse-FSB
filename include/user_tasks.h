@@ -6,5 +6,6 @@
 void StartMenuTask(void const * argument);
 void StartMotorTask(void const * argument);
 void StartADCTask(void const * argument);
+void StartMotorTask(void const * argument);
 
 #endif
