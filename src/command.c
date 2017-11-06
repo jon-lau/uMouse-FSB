@@ -48,11 +48,13 @@ void ADC_Callback(int num_keys, float *keys) {
 //		printf("\n");
 
 
-			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);
 
 			while(1){
-				if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5))
-				HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+				if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5)){
+					HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
+					printf("BUTTON PRESS\n\r");
+				}
 			}
 
 

@@ -483,7 +483,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, CE_Pin|R_PH_Pin|IMU_CS_Pin
-                          |L_TX_Pin|LF_TX_Pin|RF_TX_Pin, GPIO_PIN_RESET);
+                          |LF_TX_Pin|RF_TX_Pin, GPIO_PIN_RESET);
 
   //Set Chip Select to 1
   HAL_GPIO_WritePin(GPIOC, IMU_CS_Pin, GPIO_PIN_SET);
@@ -501,7 +501,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : CE_Pin L_EN_Pin R_PH_Pin IMU_CS_Pin 
                            L_TX_Pin LF_TX_Pin RF_TX_Pin */
   GPIO_InitStruct.Pin = CE_Pin|R_PH_Pin|IMU_CS_Pin
-                          |L_TX_Pin|LF_TX_Pin|RF_TX_Pin;
+                          |RF_TX_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
