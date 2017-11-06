@@ -1,6 +1,0 @@
-eclipse.preferences.version=1
-environment/project/ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1760983676/PATH/delimiter=;
-environment/project/ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1760983676/PATH/operation=replace
-environment/project/ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1760983676/PATH/value=C\:\\STM32Toolchain\\BuildTools;C\:\\STM32Toolchain\\gnu-arm\\bin;C\:/Program Files/Java/jre1.8.0_144/bin/server;C\:/Program Files/Java/jre1.8.0_144/bin;C\:/Program Files/Java/jre1.8.0_144/lib/amd64;C\:\\ProgramData\\Oracle\\Java\\javapath;C\:\\WINDOWS\\system32;C\:\\WINDOWS;C\:\\WINDOWS\\System32\\Wbem;C\:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files (x86)\\Microchip\\xc8\\v1.44\\bin;C\:\\Program Files\\Git\\cmd;C\:\\Program Files\\PuTTY\\;C\:\\Users\\Jon\\AppData\\Local\\Microsoft\\WindowsApps;C\:\\Python27;C\:\\Python27\\Scripts;C\:\\Users\\Jon\\AppData\\Local\\atom\\bin;C\:\\Users\\Jon\\AppData\\Local\\Microsoft\\WindowsApps;C\:\\STM32Toolchain\\Build Tools;;C\:\\Users\\Jon\\eclipse\\cpp-neon\\eclipse;C\:\\MinGW\\bin
-environment/project/ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1760983676/append=true
-environment/project/ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1760983676/appendContributed=true
